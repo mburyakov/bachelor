@@ -1,0 +1,297 @@
+%Copyright  P. Trifonov petert@dcn.ftk.spbstu.ru
+\ProvidesPackage{spbstuthesis}
+\RequirePackage{setspace}
+\RequirePackage{tabularx}
+\RequirePackage{hyphenat}
+\RequirePackage{indentfirst}
+\RequirePackage{literat}
+\RequirePackage{lastpage}
+\RequirePackage{ifthen}
+\RequirePackage{etoolbox}
+\RequirePackage{caption}
+
+\def\@setafourpaper{{\setlength\paperheight {297mm}%
+    \setlength\paperwidth  {210mm}
+    % Оформление для формата A4
+    \setlength{\headheight}{0mm} \setlength{\headsep}{0mm}
+    \setlength{\topmargin}{-1in}\addtolength{\topmargin}{20mm}
+    \setlength{\oddsidemargin}{-1in}\addtolength{\oddsidemargin}{20mm}
+    \setlength{\evensidemargin}{-1in}\addtolength{\evensidemargin}{20mm}
+    \setlength{\textwidth}{\paperwidth}\addtolength{\textwidth}{-40mm}
+    \setlength{\textheight}{\paperheight} \addtolength{\textheight}{-40mm}
+    \addtolength{\textheight}{-\headsep}
+    \addtolength{\textheight}{-\footskip}
+    \renewcommand\@ptsize{4}
+    \setstretch{1.5}
+    %14 pt font
+\renewcommand{\tiny}{\fontsize{7}{8.4pt}\selectfont}
+\renewcommand{\scriptsize}{\fontsize{9}{11pt}\selectfont}
+\renewcommand{\footnotesize}{\fontsize{11}{13.6pt}\selectfont}
+\renewcommand{\small}{\fontsize{12}{14.5pt}\selectfont}
+\renewcommand{\normalsize}{\fontsize{14}{18pt}\selectfont}
+\renewcommand{\large}{\fontsize{17}{20pt}\selectfont}
+\renewcommand{\Large}{\fontsize{20}{25pt}\selectfont}
+\renewcommand{\LARGE}{\fontsize{25}{30pt}\selectfont}}}
+\def\@setafivepaper{\setlength\paperheight {210mm}%
+    \setlength\paperwidth  {148mm}
+    \special{papersize=148mm,210mm}
+    % Оформление для формата A5
+    \setlength{\headheight}{0mm} \setlength{\headsep}{0mm}
+    \setlength{\topmargin}{-1in}\addtolength{\topmargin}{18mm}
+    \setlength{\oddsidemargin}{-1in}\addtolength{\oddsidemargin}{18mm}
+    \setlength{\evensidemargin}{-1in}\addtolength{\evensidemargin}{18mm}
+    \setlength{\textwidth}{\paperwidth}\addtolength{\textwidth}{-36mm}
+    \setlength{\textheight}{\paperheight} \addtolength{\textheight}{-36mm}
+    \addtolength{\textheight}{-\headsep}
+    \addtolength{\textheight}{-\footskip}
+    \renewcommand\@ptsize{0}    
+    \setstretch{1}        
+    }
+%\ProcessOptions
+
+\newcommand{\coursework}[6]{
+\@setafourpaper
+        \newcommand{\@worktype}{\begin{LARGE}КУРСОВАЯ РАБОТА\end{LARGE}}
+        \newcommand{\@subject}{#1}
+        \newcommand{\@group}{#2}
+        \newcommand{\@student}{#3}
+        \newcommand{\@direction}{Дисциплина: \, \textit{#4}}
+        \newcommand{\@advisortitle}{#5}
+        \newcommand{\@advisor}{#6}
+        \global\let\@Accepted\@empty
+        \global\let\@Title\@empty
+        }
+
+\newcommand{\ministrycontest}[2]{
+\@setafourpaper
+        \newcommand{\@Title}{Девиз ``#1''}
+        \newcommand{\@subject}{#2}
+        \global\let\@Accepted\@empty
+        }
+
+\newcommand{\sciencereport}[5]{
+\@setafourpaper
+        \newcommand{\@worktype}{\begin{LARGE}ОТЧЕТ О НИР\end{LARGE}}
+        \newcommand{\@subject}{#1}
+        \newcommand{\@group}{#2}
+        \newcommand{\@student}{#3}
+        \newcommand{\@advisortitle}{#4}
+        \newcommand{\@advisor}{#5}
+        \global\let\@Accepted\@empty
+        \global\let\@Title\@empty
+        \global\let\@direction\@empty
+        }
+
+\newcommand{\bachelor}[6]{
+\@setafivepaper
+        \newcommand{\@Accepted}{Работа допущена к защите}
+        \newcommand{\@worktype}{\begin{LARGE}ВЫПУСКНАЯ РАБОТА БАКАЛАВРА\end{LARGE}}
+        \newcommand{\@subject}{#1}
+        \newcommand{\@direction}{Направление:  \textit{#2}}
+        \newcommand{\@group}{#3}
+        \newcommand{\@student}{#4}
+        \newcommand{\@advisortitle}{#5}
+        \newcommand{\@advisor}{#6}
+        \global\let\@Title\@empty
+        }
+
+\newcommand{\engineer}[6]{
+\@setafivepaper
+        \newcommand{\@Accepted}{Проект допущен к защите}
+        \newcommand{\@worktype}{\begin{Large}ДИПЛОМНЫЙ ПРОЕКТ\end{Large}}
+        \newcommand{\@subject}{#1}
+        \newcommand{\@direction}{Специальность: \textit{#2}}
+        \newcommand{\@group}{#3}
+        \newcommand{\@student}{#4}
+        \newcommand{\@advisortitle}{#5}
+        \newcommand{\@advisor}{#6}
+        \global\let\@Title\@empty
+        }
+
+\newcommand{\masters}[7]{
+\@setafivepaper
+        \newcommand{\@Accepted}{Диссертация допущена к защите}
+        \newcommand{\@worktype}{\begin{Large}ДИССЕРТАЦИЯ\end{Large}\\
+        \begin{large}на соискание ученой степени\end{large}\\
+        \begin{Large} МАГИСТРА\end{Large}}
+        \newcommand{\@subject}{#1}
+        \newcommand{\@direction}{Направление:  \textit{#2}\\Магистерская программа:  \textit{#3}}
+        \newcommand{\@group}{#4}
+        \newcommand{\@student}{#5}
+        \newcommand{\@advisortitle}{#6}
+        \newcommand{\@advisor}{#7}
+        \global\let\@Title\@empty
+        }
+
+
+\renewcommand{\maketitle}{
+\pagestyle{empty}
+{\nohyphens{
+\ifx \@Title\@empty
+\begin{small}
+\begin{center}
+Санкт-Петербургский государственный политехнический университет\\
+Институт информационных технологий и управления\\
+Кафедра распределенных вычислений и компьютерных сетей\\
+\end{center}
+\ifx \@Accepted\@empty
+\vspace{0.15\textheight}
+\else
+\vspace{0.07\textheight}
+\parbox[t][0.3\textwidth][c]{0.4\textwidth}{
+\includegraphics[width=0.4\textwidth]{spbstu.pdf}}\hfill
+\parbox[t]{0.5\textwidth}{
+\@Accepted\\
+Зав. кафедрой\\
+\parbox[t]{0.2\textwidth}{\shortstack{\vrule width 0.2\textwidth height 0.01mm}}Ю. Г. Карпов\\
+"\parbox[t]{0.05\textwidth}{\shortstack{\vrule width 0.05\textwidth height 0.01mm}}"\parbox[t]{0.12\textwidth}{\shortstack{\vrule width 
+0.12\textwidth height 0.01mm}}   \the\year г.}
+\fi
+\end{small}
+\vspace{0.05\textheight}
+\begin{center}
+\@worktype\\
+\vspace{0.03\textheight}
+Тема:\textit{{\@subject}}\\
+\ifx \@Accepted\@empty
+\ifx \@direction\@empty
+\vspace{0.2\textheight}
+\else
+\@direction
+\fi
+\else
+\vspace{0.05\textheight}
+\ifx \@direction\@empty
+\vspace{0.2\textheight}
+\else
+\@direction
+\fi
+\fi
+\vspace{0.1\textheight}
+\begin{tabular}{lll}
+&\hspace*{0.25\textwidth}&\\
+Выполнил студент гр. \@group &&\@student\\
+Руководитель, \@advisortitle&&\@advisor\\
+\end{tabular}
+\vfill
+Санкт-Петербург\\
+\the\year 
+\end{center}}
+\else
+\begin{flushright}
+\@Title
+\end{flushright}
+\vspace{0.3\textheight}
+\begin{center}
+\begin{LARGE}
+\@subject
+\end{LARGE}
+\vfill
+\the\year
+\end{center}
+\fi
+}
+\cleardoublepage
+\pagestyle{plain}
+\setcounter{page}{2}
+}
+
+
+\newcommand{\task}[2]
+{
+\ifx \@Title\@empty
+ \begin{small}
+
+\begin{flushright}
+\parbox[t]{0.4\textwidth}{
+        Утверждаю\\
+        Зав. кафедрой\\
+        {\shortstack{\vrule width 0.2\textwidth height 0.01mm}}Ю. Г. Карпов\\
+        "{\shortstack{\vrule width 0.05\textwidth height 
+        0.01mm}}"{\shortstack{\vrule width 
+        0.12\textwidth height 0.01mm}}   \the\year г.}
+\end{flushright}
+\end{small}
+\vspace{0.005\textheight}
+\begin{center}
+ЗАДАНИЕ\\
+\begin{small}
+\textbf\textit{на дипломную работу\\
+студенту #1 \\} \vspace{0.01\textheight} 
+\end{small}
+\end{center}
+\begin{enumerate}
+\item Тема: \textit{{\@subject}}\\
+(утверждена распоряжением по институту от {\shortstack{\vrule width 0.1\textwidth height 0.01mm}} № {\shortstack{\vrule width 0.1\textwidth height 0.01mm}})
+#2
+\end{enumerate}
+%\vspace{0.01\textheight}
+\begin{small}
+Дата выдачи задания: \shortstack{\vrule width 0.2\textwidth height         0.01mm} г.\\
+\parbox[t]{0.8\textwidth}{Руководитель: {\shortstack{\vrule width 0.2\textwidth height 0.01mm}}\@advisortitle \@advisor\\
+Задание принял к исполнению: {\shortstack{\vrule width 0.2\textwidth height 0.01mm}}\@student}\\
+\end{small}
+\fi
+}
+
+\newcommand{\Abstract}[2]{\newcommand{\@AbstrRus}{#1}\newcommand{\@AbstrEng}{#2}}
+
+\newcounter{@FigureCounter}\setcounter{@FigureCounter}{0}
+\newcounter{@LastFigure}\setcounter{@LastFigure}{0}
+\newcounter{@TableCounter}\setcounter{@TableCounter}{0}
+\newcounter{@LastTable}\setcounter{@LastTable}{0}
+
+
+\newcommand{\makeabstract}{\chapter*{Реферат}
+
+С. \pageref{LastPage}
+\ifnumcomp{\value{@LastFigure}}{>}{0}
+{, рис. \arabic{@LastFigure}}{}
+\ifnumcomp{\value{@LastTable}}{>}{0}
+{, табл. \arabic{@LastTable}}{}\\
+\@AbstrRus
+\clearpage
+\chapter*{Abstract}
+\pageref{LastPage} pages
+\ifnumcomp{\value{@LastFigure}}{>}{0}
+{, \arabic{@LastFigure} figures}{}
+\ifnumcomp{\value{@LastTable}}{>}{0}
+{, \arabic{@LastTable} tables}{}\\
+\@AbstrEng
+\clearpage
+}
+
+\newcommand{\Chapter}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
+\DeclareCaptionLabelSeparator{dot}{. } 
+\captionsetup{justification=centering,labelsep=dot}
+
+\newenvironment{Table}[3][tbp]{
+\begin{table}[#1]
+\caption{#2}\label{#3}\addtocounter{@TableCounter}{1}\centering}
+{\end{table}}
+
+\newenvironment{Figure}[3][tbp]{
+\begin{figure}[#1]\def\spbstu@cap{#2}\def\spbstu@lab{#3}\centering}
+{\caption{\spbstu@cap}\label{\spbstu@lab}
+\undef\spbstu@cap\undef\spbstu@lab
+\addtocounter{@FigureCounter}{1} \end{figure}}
+
+
+
+
+\AtEndDocument{%
+  \gdef\lastpage@putlabel{\relax}
+  \if@filesw%
+    \message{spbstuthesis setting figure number^^J}%
+    \clearpage\immediate\write\@auxout{\string\setcounter{@LastFigure}{\arabic{@FigureCounter}}}%
+    \clearpage\immediate\write\@auxout{\string\setcounter{@LastTable}{\arabic{@TableCounter}}}%
+%
+  \else%
+    \PackageError{spbstuthesis}{No auxiliary file allowed.}%
+     {The spbstuthesis package was not allowed to write to an .aux file.\MessageBreak%
+      This package does not work without access to an .aux file.\MessageBreak%
+      Press Ctrl+Z to exit.\MessageBreak%
+     }%
+  \fi%
+  }
+\endinput
