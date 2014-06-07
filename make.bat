@@ -4,6 +4,7 @@ if exist %1 goto Make
 echo Usage: make ThesisFile.tex
 goto End
 :Make
+%GIT% add figures
 %GIT% clean -dfx
 latex %1
 bibtex8 -H -c cp1251 %~dpn1.aux
