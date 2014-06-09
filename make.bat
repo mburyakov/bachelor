@@ -7,10 +7,10 @@ goto End
 %GIT% add figures
 %GIT% clean -dfx
 latex %1
-bibtex8 -H -c cp1251 %~dpn1.aux
+bibtex8 -H -c cp1251 %~n1.aux
 latex %1
 latex %1
-dvips %~dpn1.dvi
-mgs -sDEVICE=pdfwrite -DNOPAUSE -DBATCH -sOutputFile=%~dpn1.pdf %~dpn1.ps
+dvips %~n1.dvi
+mgs -sDEVICE=pdfwrite -DNOPAUSE -DBATCH -sOutputFile=%~n1.pdf %~n1.ps
 %GIT% clean -dfx
 :End
