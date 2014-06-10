@@ -3,3 +3,6 @@
 *.dvi
 *.ps
 *.toc
+*.bbl
+*.blg
+*.out

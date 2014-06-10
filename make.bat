@@ -12,5 +12,5 @@ latex %1
 latex %1
 dvips %~n1.dvi
 mgs -sDEVICE=pdfwrite -DNOPAUSE -DBATCH -sOutputFile=%~n1.pdf %~n1.ps
-%GIT% clean -dfx
+REM %GIT% clean -dfx
 :End
