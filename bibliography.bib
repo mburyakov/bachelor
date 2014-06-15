@@ -6,6 +6,17 @@
  publisher = {MIT Press},
  address = {Cambridge, MA, USA},
 }
+@book{tapl,
+ language = {russian},
+ crossref = {Pierce:2002:TPL:509043},
+ author = {Пирс, Бенджамин},
+ title = {Типы в языках программирования},
+ year = {2011},
+ address = {M.},
+ isbn = {978-5-7913-0082-9},
+ publisher = {Лямбда пресс \& Добросвет},
+ translator = {Бронников, Георгий and Отт, Алекс},
+}
 @article{Breslav:2010,
    author  = {Breslav, Andrey},
    title   = {Extensible type checker for parser generation},
@@ -13,20 +24,20 @@
    pages   = {1-25},
    archivePrefix = "arXiv",
    eprint = {1002.1549},
-   primaryClass = "cs"
+   primaryClass = "cs",
 }
 @article{tandoori,
    author  = {Gerg\H{o} \'Erdi},
    title   = {Compositional Type Checking for Hindley-Milner Type Systems with Ad-hoc Polymorphism},
    year    = {2011},
    pages   = {1-56},
-   url     = {http://gergo.erdi.hu/projects/tandoori/}
+   url     = {http://gergo.erdi.hu/projects/tandoori/},
 }
 @phdthesis{Gast:2004,
    author  = {Holger Gast},
    title   = {A Generator for Type Checkers},
    year    = {2004},
-   school  = {Fakult\"at f\"ur Informations- und Kognitionswissenschaften der Eberhard-Karls-Universit\"at T\"ubingen}
+   school  = {Fakult\"at f\"ur Informations- und Kognitionswissenschaften der Eberhard-Karls-Universit\"at T\"ubingen},
 }
 @book{dslbook,
   author    = {Markus Voelter and
@@ -44,19 +55,22 @@
   isbn      = {978-1-4812-1858-0},
   pages     = {1-558},
   url       = {http://www.dslbook.org},
-  bibsource = {DBLP, http://dblp.uni-trier.de}
+  bibsource = {DBLP, http://dblp.uni-trier.de},
 }
 @manual{MPSDoc,
   title = {MPS User's Guide},
-  url = {http://confluence.jetbrains.com/display/MPSD31/MPS+User\%27s+Guide}
+  url = {http://confluence.jetbrains.com/display/MPSD31/MPS+User's+Guide},
+  organization = {Jetbrains},
 }
 @manual{HaskellWiki,
   title = {Haskell Wiki},
-  url = {http://www.haskell.org/haskellwiki}
+  url = {http://www.haskell.org/haskellwiki},
+  organization = {Haskell Community},
 }
 @manual{JavaSpec3,
   title = {The Java Language Specification, Third Edition},
-  url = {http://docs.oracle.com/javase/specs/}
+  url = {http://docs.oracle.com/javase/specs/},
+  organization = {Oracle},
 }
 @article{formalJava,
    author  = {Mourad Debbabi and Myriam Fourati},
@@ -64,10 +78,10 @@
    journal = {Journal of Object Technology},
    volume  = {6},
    number  = {8},
-   month   = {September-October}
+   month   = {September-October},
    year    = {2007},
    pages   = {117-184},
-   eprint  = {http://www.jot.fm/issues/issue_2007_09/article3}
+   eprint  = {http://www.jot.fm/issues/issue_2007_09/article3},
 }
 @article{MZ06,
    author  = {Karl Mazurak and Steve Zdancewic},
@@ -114,26 +128,26 @@
    author  = {Daniel Smith},
    title   = {Designing Type Inference for Typed Object-Oriented Languages},
    year    = {2010},
-   school  = {Rice University}
+   school  = {Rice University},
 }
 @article{fool2007,
    title  = {On Decidability of Nominal Subtyping with Variance},
    year   = {2007},
-   author = {Kennedy, Andrew J. and Pierce, Benjamin C.}
-   school = {Microsoft research}
+   author = {Kennedy, Andrew J. and Pierce, Benjamin C.},
+   organization = {Microsoft research},
 }
 @misc{ohnosequences,
   url = {https://github.com/ohnosequences/ohnosequences.github.com/blob/blog/post/typed/graphs/source/_posts/2014-05-18-typed-property-graphs-in-java.markdown},
   author = {Eduardo Pareja Tobes},
   title  = {Typed property graphs in Java},
-  year   = {2014}
+  year   = {2014},
 }
 @inproceedings{MPSPPPJ,
  author = {Pech, Vaclav and Shatalin, Alexander and Voelter, Marcus},
  title = {JetBrains MPS as a tool for extending Java},
  booktitle = {Proceedings of the 2013 International Conference on Principles and Practices of Programming on the Java Platform: Virtual Machines, Languages, and Tools (PPPJ '13)},
  year = {2013},
- pages = {165-168}
+ pages = {165-168},
 }
 @article{Liskov:1994:BNS:197320.197383,
  author = {Liskov, Barbara H. and Wing, Jeannette M.},
@@ -176,5 +190,54 @@
     journal = {Journal of Computer and System Sciences},
     year = {1978},
     volume = {17},
-    pages = {348--375}
+    pages = {348--375},
+}
+@inproceedings{Bettini:2011:DWT:2093157.2093163,
+ author = {Bettini, Lorenzo},
+ title = {A DSL for Writing Type Systems for Xtext Languages},
+ booktitle = {Proceedings of the 9th International Conference on Principles and Practice of Programming in Java},
+ series = {PPPJ '11},
+ year = {2011},
+ isbn = {978-1-4503-0935-6},
+ location = {Kongens Lyngby, Denmark},
+ pages = {31--40},
+ numpages = {10},
+ url = {http://doi.acm.org/10.1145/2093157.2093163},
+ doi = {10.1145/2093157.2093163},
+ acmid = {2093163},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {DSL, Eclipse, implementation, type system, types},
+} 
+@book{Stahl:2006:MSD:1196766,
+ author = {Stahl, Thomas and Voelter, Markus and Czarnecki, Krzysztof},
+ title = {Model-Driven Software Development: Technology, Engineering, Management},
+ year = {2006},
+ isbn = {0470025700},
+ publisher = {John Wiley \& Sons},
+} 
+@misc{VoelterXText,
+ author = {Marcus V\"{o}lter},
+ title = {Xtext/TS - a Typesystem Framework for Xtext},
+ year = {2010},
+ month = {feb},
+ number = {10},
+ publisher = {InfoQ},
+ url = {http://www.infoq.com/articles/xtext_ts},
+}
+@inproceedings{KatsV10,
+  title = {The {Spoofax} language workbench: rules for declarative specification of languages and {IDEs}},
+  author = {Lennart C. L. Kats and Eelco Visser},
+  year = {2010},
+  doi = {http://doi.acm.org/10.1145/1869459.1869497},
+  tags = {programming languages, model-to-model transformation, workbench, semantics, rule-based, Eclipse, meta programming, model editor, graph transformation, meta-model, transformation language, architecture, reuse, model-driven development, graph-rewriting, rules, C++, code completion, code generation, model transformation, programming, language workbench, Spoofax, Meta-Environment, rewriting, parsing, meta-objects, transformation, program transformation, domain-specific language},
+  researchr = {http://researchr.org/publication/KatsV10},
+  cites = {0},
+  citedby = {1},
+  pages = {444-463},
+  booktitle = {Proceedings of the 25th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications, OOPSLA 2010},
+  editor = {William R. Cook and Siobh\'{a}n Clarke and Martin C. Rinard},
+  address = {Reno/Tahoe, Nevada},
+  publisher = {ACM},
+  isbn = {978-1-4503-0203-6},
 }
