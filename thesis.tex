@@ -14,6 +14,7 @@
 \usepackage{psfrag}
 \usepackage{amsthm}
 \usepackage{hyperref}
+\usepackage{epstopdf}
 
 
 \theoremstyle{remark}
@@ -255,6 +256,8 @@ Let-полиморфизм лежит в основе систем типов многих функциональных языков програм
 
 Для практического построения моделей систем типов используется MPS --- платформа для разработки языков \cite{MPSPPPJ, MPSDoc}. Удобство его использования для этой цели заключается в том, что он позволяет легко описывать языки, а также предоставляет некоторый высокоуровневый API для работы с кодом, написанном на этих языках.
 
+Среда разработки MPS позволяет создавать предметно-ориентированные языки и использовать их при написании программ. Создаваемые в MPS программы хранятся не в виде текста, а в виде абстрактного синтаксического дерева. Для редактирования AST используется проекционный редактор, отображающий элементы AST в виде, напоминающем текст, доступный для редактирования. Это позволяет использовать в одной программе несколько языков, не требуя их синтаксической совместимости.
+
 Использование MPS подсказывает некоторые особенности машины системы типов. Во-первых, типы присваиваются не терму, оторванному от контекста, а конкретной вершине AST. Это вполне отвечает практической необходимости, потому как возможны системы типов, где одно и тоже поддерево AST, повторенное в разных местах дерева, будет иметь в них различный тип. Во-вторых, сами типы также записываются в виде AST. В случае простых типов это не имеет особого значения, но уже появление параметризованных типов (которые ещё и могут встречаться в тексте программы) выявляет общую природу кода на языке и типов этого языка.
 
 Среда MPS позволяет использовать в одной программе разные языки, который, в общем случае, могут быть разработаны независимо. Для совместимости языков, в числе прочего, требуется совместимость систем типов. Для этого требуется существование некоторой виртуальной машины системы типов, позволяющей разработчикам языка описывать правила вычисления типов. В данной работе такая машина системы типов предложена.
@@ -300,9 +303,9 @@ MPS содержит предметно-ориентированный язык для описания правил системы типов. О
 \end{itemize}
 
 \begin{Figure}{Примеры уравнений в MPS}{fMpsequations}
-\subfigure[Уравнение \label{fMpsequation}]{\scalebox{0.4}{\includegraphics[bb=0 0 400 50]{figures/mps/mpsequation.png}}}
-\subfigure[Неравенство \label{fMpsinequation}]{\scalebox{0.4}{\includegraphics[bb=0 0 450 50]{figures/mps/mpsinequation.png}}}
-\subfigure[Требование стравнимости \label{fMpscomparison}]{\scalebox{0.4}{\includegraphics[bb=0 0 500 50]{figures/mps/mpscomparison.png}}}
+\subfigure[Уравнение \label{fMpsequation}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/mpsequation.pdf}}}
+\subfigure[Неравенство \label{fMpsinequation}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/mpsinequation.pdf}}}
+\subfigure[Требование стравнимости \label{fMpscomparison}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/mpscomparison.pdf}}}
 \end{Figure}
 
 Существенным недостатком такой модели описания системы типов является невозможность обеспечить транзитивность отношения подтипа. Хотя, конечно, могут существовать в принципе алгоритмически неразрешимые системы типов, но и во многих простых ситуациях транзитивность отношения подтипа, номинально постулируемая, на практике не обеспечивается.
@@ -491,8 +494,8 @@ var s2 = s1 + "456";
 \end{enumerate}
 
 \begin{Figure}{Примеры типов языка Haskell}{fHaskelltypes}
-\subfigure[Конкрентые типы \label{fConcretetypes}]{\scalebox{0.5}{\includegraphics[bb=0 0 410 101]{figures/mps/concretetypes.png}}}
-\subfigure[Полиморфные типы \label{fPolymorphictypes}]{\scalebox{0.5}{\includegraphics[bb=0 0 395 179]{figures/mps/polymorphictypes.png}}}
+\subfigure[Конкрентые типы \label{fConcretetypes}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/concretetypes.pdf}}}
+\subfigure[Полиморфные типы \label{fPolymorphictypes}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/polymorphictypes_.pdf}}}
 \end{Figure}
 
 
@@ -510,7 +513,7 @@ var s2 = s1 + "456";
 \section{Объявление алгебраических типов}
 
 \begin{Figure}{Объявления алгебраических типов данных}{fDatatype}
-\scalebox{0.5}{\includegraphics[bb=0 0 345 49]{figures/mps/datatype.png}}
+\scalebox{0.5}{\includegraphics{figures/mps/pdf/datatype.pdf}}
 \end{Figure}
 
 Пример объявления алгебраических типов \verb_Bool_ и \verb_Maybe_ приведён на рис. \ref{fDatatype}. Для каждого алгебраического типа нужно выставить типы его конструкторам. Конструктор с n аргументами будет иметь функциональный тип с n аргументами, причём аргументы и результат копируются непосредственно из объявления.
@@ -525,8 +528,8 @@ var s2 = s1 + "456";
 \end{enumerate}
 
 \begin{Figure}{Типы конструкторов}{fConstructortype}
-\subfigure[Тип \texttt{Bool} \label{fBooltype}]{\scalebox{0.5}{\includegraphics[bb=0 0 302 101]{figures/mps/booltype.png}}}
-\subfigure[Тип \texttt{Maybe} \label{fMaybetype}]{\scalebox{0.5}{\includegraphics[bb=0 0 395 179]{figures/mps/maybetype.png}}}
+\subfigure[Тип \texttt{Bool} \label{fBooltype}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/booltype_.pdf}}}
+\subfigure[Тип \texttt{Maybe} \label{fMaybetype}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/maybetype_.pdf}}}
 \end{Figure}
 
 
@@ -537,7 +540,7 @@ var s2 = s1 + "456";
 \section{Лямбда-выражение}
 
 \begin{Figure}{Лямбда-выражение}{fLambda}
-\subfigure[Тестовое представление \label{fLambdatext}]{\scalebox{0.5}{\includegraphics[bb=-100 0 200 50]{figures/mps/lambdatext.png}}}
+\subfigure[Тестовое представление \label{fLambdatext}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/lambdatext_.pdf}}}
 
 \subfigure[Структура синтаксического дерева \label{fLambdatree}]{\scalebox{0.4}{\includegraphics[bb=-50 0 350 200]{figures/mps/lambdatree.png}}}
 \end{Figure}
@@ -575,7 +578,7 @@ typeof(fun) := "argType -> resType";
 На рисунке \ref{fLambdaref} на переменную \verb_x_ (параметр лямбда-функции) имеется одна ссылка.
 
 \begin{Figure}{Ссылка на переменную лямбда-выражения}{fLambdaref}
-\scalebox{0.5}{\includegraphics[bb=0 0 152 150]{figures/mps/lambdaref.png}}
+\scalebox{0.5}{\includegraphics{figures/mps/pdf/lambdaref_.pdf}}
 \end{Figure}
 
 В общем случае сслылок на одну переменную (её упоминаний в теле функции) может быть несколько. Так как все эти упоминания переменной должны иметь одинаковый тип, логично приравнять тип ссылки типу объявления.
@@ -722,8 +725,8 @@ rev2 (x:xs) ys = rev1 xs (x:ys)
 
 Чтобы узнать тип выражения \texttt{this}, в котором не указан класс (unqualified \texttt{this}), нужно найти ближайший класс, в котором это выражение находится. Для описания этого используется такой механизм разработанного языка, как иерархический контекст. При этом используется аспект иерархического контекста \verb_java.typeofThis_. Правило для класса записывает в контект ссылку на этот класс. Эта ссылка может быть прочитана в правиле для выражения \texttt{this}, и на её основе вычисляется тип выражения. Пример работы иерархического контекста по аспекту \verb_java.typeofThis_ приведён на рисунке \ref{fTreecontext}.
 
-\begin{Figure}{Пример использования иерархического контекста для типизирования выражений \texttt{this}}{fTreecontext}
-\scalebox{0.25}{\includegraphics[bb=0 0 593 350]{figures/mps/treecontext.png}}
+\begin{Figure}{Пример использования иерархического контекста для типизации выражений \texttt{this}}{fTreecontext}
+\scalebox{0.5}{\includegraphics{figures/mps/pdf/treecontext_.pdf}}
 \end{Figure}
 
 \subsection{Qualified \texttt{this}}
