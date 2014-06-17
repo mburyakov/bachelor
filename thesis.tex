@@ -244,7 +244,7 @@ Let-полиморфизм лежит в основе систем типов многих функциональных языков програм
 Например, в современных версиях языка Java присутствуют как рекурсивные типы, так и рекурсивная ограниченная квантификация. Эти нетривиальные свойства системы типов находят своё применение в некоторых моделях архитектурной абстракции. Например, специальный класс \verb_Enum_ в стандартной библиотеке языка объявлен и использованием ограниченной рекурсивной квантификации (рис. \ref{fEnum}). Примеры использования ограниченной рекурсивной квантификации также можно найти в \cite{ohnosequences, Fbounded}.
 
 \begin{Figure}{Объявление класса Enum}{fEnum}
-{\scalebox{0.5}{\includegraphics{figures/mps/pdf/enum.pdf}}}
+{\scalebox{0.5}{\includegraphics{figures/pdf/enum.pdf}}}
 \end{Figure}
 
 Однако рекурсивная ограниченная квантификация резко усложняет систему типов языка. В частности, для языка Java доказано \cite{fool2007}, что его система типов является неразрешимой, то есть не существует алгоритма, способного для каждой программы на Java доказать либо опровергнуть её корректность с точки зрения типов в соответствии со спецификацией \cite{JavaSpec3}. При этом известно \cite{fool2007}, что к неразрешимости системы типов Java приводит возможность объявлять рекурсивно нижнюю границу типовой переменной. Определена \cite{Tate:2011:TWJ:1993316.1993570} и более узкая граница набора возможностей, без которого система типов Java была бы разрешимой.
@@ -304,9 +304,9 @@ MPS содержит предметно-ориентированный язык для описания правил системы типов. О
 \end{itemize}
 
 \begin{Figure}{Примеры уравнений в MPS}{fMpsequations}
-\subfigure[Уравнение \label{fMpsequation}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/mpsequation.pdf}}}
-\subfigure[Неравенство \label{fMpsinequation}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/mpsinequation.pdf}}}
-\subfigure[Требование стравнимости \label{fMpscomparison}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/mpscomparison.pdf}}}
+\subfigure[Уравнение \label{fMpsequation}]{\scalebox{0.5}{\includegraphics{figures/pdf/mpsequation.pdf}}}
+\subfigure[Неравенство \label{fMpsinequation}]{\scalebox{0.5}{\includegraphics{figures/pdf/mpsinequation.pdf}}}
+\subfigure[Требование стравнимости \label{fMpscomparison}]{\scalebox{0.5}{\includegraphics{figures/pdf/mpscomparison.pdf}}}
 \end{Figure}
 
 Существенным недостатком такой модели описания системы типов является невозможность обеспечить транзитивность отношения подтипа. Хотя, конечно, могут существовать в принципе алгоритмически неразрешимые системы типов, но и во многих простых ситуациях транзитивность отношения подтипа, номинально постулируемая, на практике не обеспечивается.
@@ -399,7 +399,7 @@ var s2 = s1 + "456";
 Вначале правило (экземпляр правила) 1 выводит тип переменной \verb_s1_ на основе её иницализатора. Затем правило 2 использует данный тип для вывода типа выражения чтения переменной. После этого правило 3, основываясь на том, что оба агрумента опрации сложения имеют строковый тип, присваивает строковый тип самой операции сложения. И в конце правило 4 присваивает строковый тип переменной \verb_s2_ на основе её объявления.
 
 \begin{Figure}{Граф зависимостей к примеру \ref{exRulegraph}}{fRulegraph}
-\scalebox{0.25}{\includegraphics[bb=0 0 911 462]{figures/mps/rulegraph.png}}
+\scalebox{0.25}{\includegraphics[bb=0 0 911 462]{figures/png/rulegraph.png}}
 \end{Figure}
 
 \end{ex}
@@ -495,8 +495,8 @@ var s2 = s1 + "456";
 \end{enumerate}
 
 \begin{Figure}{Примеры типов языка Haskell}{fHaskelltypes}
-\subfigure[Конкрентые типы \label{fConcretetypes}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/concretetypes.pdf}}}
-\subfigure[Полиморфные типы \label{fPolymorphictypes}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/polymorphictypes_.pdf}}}
+\subfigure[Конкрентые типы \label{fConcretetypes}]{\scalebox{0.5}{\includegraphics{figures/pdf/concretetypes.pdf}}}
+\subfigure[Полиморфные типы \label{fPolymorphictypes}]{\scalebox{0.5}{\includegraphics{figures/pdf/polymorphictypes_.pdf}}}
 \end{Figure}
 
 
@@ -514,7 +514,7 @@ var s2 = s1 + "456";
 \section{Объявление алгебраических типов}
 
 \begin{Figure}{Объявления алгебраических типов данных}{fDatatype}
-\scalebox{0.5}{\includegraphics{figures/mps/pdf/datatype.pdf}}
+\scalebox{0.5}{\includegraphics{figures/pdf/datatype.pdf}}
 \end{Figure}
 
 Пример объявления алгебраических типов \verb_Bool_ и \verb_Maybe_ приведён на рис. \ref{fDatatype}. Для каждого алгебраического типа нужно выставить типы его конструкторам. Конструктор с n аргументами будет иметь функциональный тип с n аргументами, причём аргументы и результат копируются непосредственно из объявления.
@@ -529,8 +529,8 @@ var s2 = s1 + "456";
 \end{enumerate}
 
 \begin{Figure}{Типы конструкторов}{fConstructortype}
-\subfigure[Тип \texttt{Bool} \label{fBooltype}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/booltype_.pdf}}}
-\subfigure[Тип \texttt{Maybe} \label{fMaybetype}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/maybetype_.pdf}}}
+\subfigure[Тип \texttt{Bool} \label{fBooltype}]{\scalebox{0.5}{\includegraphics{figures/pdf/booltype_.pdf}}}
+\subfigure[Тип \texttt{Maybe} \label{fMaybetype}]{\scalebox{0.5}{\includegraphics{figures/pdf/maybetype_.pdf}}}
 \end{Figure}
 
 
@@ -541,9 +541,9 @@ var s2 = s1 + "456";
 \section{Лямбда-выражение}
 
 \begin{Figure}{Лямбда-выражение}{fLambda}
-\subfigure[Тестовое представление \label{fLambdatext}]{\scalebox{0.5}{\includegraphics{figures/mps/pdf/lambdatext_.pdf}}}
+\subfigure[Тестовое представление \label{fLambdatext}]{\scalebox{0.5}{\includegraphics{figures/pdf/lambdatext_.pdf}}}
 
-\subfigure[Структура синтаксического дерева \label{fLambdatree}]{\scalebox{0.4}{\includegraphics[bb=-50 0 350 200]{figures/mps/lambdatree.png}}}
+\subfigure[Структура синтаксического дерева \label{fLambdatree}]{\scalebox{0.4}{\includegraphics[bb=-50 0 350 200]{figures/png/lambdatree.png}}}
 \end{Figure}
 
 Правило для лямбда-выражения, согласно алгоритму Хиндли-Милнера, должно создавать уравнения унификации, связывающие тип переменной, тип возвращаемого значения и тип самой лямбда-функции. Чтобы на разработанном языке системы типов связать типы разных вершин, присвоим этим вершинам типы (по аспекту \verb_haskell.expression_), содержащие одну и ту же переменную.
@@ -560,7 +560,7 @@ typeof(lambda) := "argType -> bodyType";
 \section{Применение функции к аргументу}
 
 \begin{Figure}{Применение функции к аргументу}{fApply}
-\scalebox{0.4}{\includegraphics[bb=-50 0 350 200]{figures/mps/applytree.png}}
+\scalebox{0.4}{\includegraphics[bb=-50 0 350 200]{figures/png/applytree.png}}
 \end{Figure}
 
 Применение функции к аргументу (рис. \ref{fApply}) является, наряду с лямбда-абстракцией, основной конструкцией лямбда-исчисления. Правило типизации для этой конструкции выглядит аналогичным образом.
@@ -579,7 +579,7 @@ typeof(fun) := "argType -> resType";
 На рисунке \ref{fLambdaref} на переменную \verb_x_ (параметр лямбда-функции) имеется одна ссылка.
 
 \begin{Figure}{Ссылка на переменную лямбда-выражения}{fLambdaref}
-\scalebox{0.5}{\includegraphics{figures/mps/pdf/lambdaref_.pdf}}
+\scalebox{0.5}{\includegraphics{figures/pdf/lambdaref_.pdf}}
 \end{Figure}
 
 В общем случае сслылок на одну переменную (её упоминаний в теле функции) может быть несколько. Так как все эти упоминания переменной должны иметь одинаковый тип, логично приравнять тип ссылки типу объявления.
@@ -727,7 +727,7 @@ rev2 (x:xs) ys = rev1 xs (x:ys)
 Чтобы узнать тип выражения \texttt{this}, в котором не указан класс (unqualified \texttt{this}), нужно найти ближайший класс, в котором это выражение находится. Для описания этого используется такой механизм разработанного языка, как иерархический контекст. При этом используется аспект иерархического контекста \verb_java.typeofThis_. Правило для класса записывает в контект ссылку на этот класс. Эта ссылка может быть прочитана в правиле для выражения \texttt{this}, и на её основе вычисляется тип выражения. Пример работы иерархического контекста по аспекту \verb_java.typeofThis_ приведён на рисунке \ref{fTreecontext}.
 
 \begin{Figure}{Пример использования иерархического контекста для типизации выражений \texttt{this}}{fTreecontext}
-\scalebox{0.5}{\includegraphics{figures/mps/pdf/treecontext_.pdf}}
+\scalebox{0.5}{\includegraphics{figures/pdf/treecontext_.pdf}}
 \end{Figure}
 
 \subsection{Qualified \texttt{this}}
