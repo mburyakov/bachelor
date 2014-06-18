@@ -496,7 +496,7 @@ var s2 = s1 + "456";
 
 \begin{Figure}{Примеры типов языка Haskell}{fHaskelltypes}
 \subfigure[Конкрентые типы \label{fConcretetypes}]{\scalebox{0.5}{\includegraphics{figures/pdf/concretetypes.pdf}}}
-\subfigure[Полиморфные типы \label{fPolymorphictypes}]{\scalebox{0.5}{\includegraphics{figures/pdf/polymorphictypes_.pdf}}}
+\subfigure[Полиморфные типы \label{fPolymorphictypes}]{\scalebox{0.5}{\includegraphics{figures/pdf/polymorphictypes.pdf}}}
 \end{Figure}
 
 
@@ -529,8 +529,8 @@ var s2 = s1 + "456";
 \end{enumerate}
 
 \begin{Figure}{Типы конструкторов}{fConstructortype}
-\subfigure[Тип \texttt{Bool} \label{fBooltype}]{\scalebox{0.5}{\includegraphics{figures/pdf/booltype_.pdf}}}
-\subfigure[Тип \texttt{Maybe} \label{fMaybetype}]{\scalebox{0.5}{\includegraphics{figures/pdf/maybetype_.pdf}}}
+\subfigure[Тип \texttt{Bool} \label{fBooltype}]{\scalebox{0.5}{\includegraphics{figures/pdf/booltype.pdf}}}
+\subfigure[Тип \texttt{Maybe} \label{fMaybetype}]{\scalebox{0.5}{\includegraphics{figures/pdf/maybetype.pdf}}}
 \end{Figure}
 
 
@@ -541,9 +541,9 @@ var s2 = s1 + "456";
 \section{Лямбда-выражение}
 
 \begin{Figure}{Лямбда-выражение}{fLambda}
-\subfigure[Тестовое представление \label{fLambdatext}]{\scalebox{0.5}{\includegraphics{figures/pdf/lambdatext_.pdf}}}
+\subfigure[Тестовое представление \label{fLambdatext}]{\scalebox{0.5}{\includegraphics{figures/pdf/lambdatext.pdf}}}
 
-\subfigure[Структура синтаксического дерева \label{fLambdatree}]{\scalebox{0.4}{\includegraphics[bb=-50 0 350 200]{figures/png/lambdatree.png}}}
+\subfigure[Структура синтаксического дерева \label{fLambdatree}]{\scalebox{0.5}{\includegraphics{figures/pdf/lambdatree.pdf}}}
 \end{Figure}
 
 Правило для лямбда-выражения, согласно алгоритму Хиндли-Милнера, должно создавать уравнения унификации, связывающие тип переменной, тип возвращаемого значения и тип самой лямбда-функции. Чтобы на разработанном языке системы типов связать типы разных вершин, присвоим этим вершинам типы (по аспекту \verb_haskell.expression_), содержащие одну и ту же переменную.
@@ -560,7 +560,7 @@ typeof(lambda) := "argType -> bodyType";
 \section{Применение функции к аргументу}
 
 \begin{Figure}{Применение функции к аргументу}{fApply}
-\scalebox{0.4}{\includegraphics[bb=-50 0 350 200]{figures/png/applytree.png}}
+\scalebox{0.5}{\includegraphics{figures/pdf/applytree.pdf}}
 \end{Figure}
 
 Применение функции к аргументу (рис. \ref{fApply}) является, наряду с лямбда-абстракцией, основной конструкцией лямбда-исчисления. Правило типизации для этой конструкции выглядит аналогичным образом.
@@ -579,7 +579,7 @@ typeof(fun) := "argType -> resType";
 На рисунке \ref{fLambdaref} на переменную \verb_x_ (параметр лямбда-функции) имеется одна ссылка.
 
 \begin{Figure}{Ссылка на переменную лямбда-выражения}{fLambdaref}
-\scalebox{0.5}{\includegraphics{figures/pdf/lambdaref_.pdf}}
+\scalebox{0.5}{\includegraphics{figures/pdf/lambdaref.pdf}}
 \end{Figure}
 
 В общем случае сслылок на одну переменную (её упоминаний в теле функции) может быть несколько. Так как все эти упоминания переменной должны иметь одинаковый тип, логично приравнять тип ссылки типу объявления.
@@ -727,7 +727,7 @@ rev2 (x:xs) ys = rev1 xs (x:ys)
 Чтобы узнать тип выражения \texttt{this}, в котором не указан класс (unqualified \texttt{this}), нужно найти ближайший класс, в котором это выражение находится. Для описания этого используется такой механизм разработанного языка, как иерархический контекст. При этом используется аспект иерархического контекста \verb_java.typeofThis_. Правило для класса записывает в контект ссылку на этот класс. Эта ссылка может быть прочитана в правиле для выражения \texttt{this}, и на её основе вычисляется тип выражения. Пример работы иерархического контекста по аспекту \verb_java.typeofThis_ приведён на рисунке \ref{fTreecontext}.
 
 \begin{Figure}{Пример использования иерархического контекста для типизации выражений \texttt{this}}{fTreecontext}
-\scalebox{0.5}{\includegraphics{figures/pdf/treecontext_.pdf}}
+\scalebox{0.5}{\includegraphics{figures/pdf/treecontext.pdf}}
 \end{Figure}
 
 \subsection{Qualified \texttt{this}}
