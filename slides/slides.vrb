@@ -1,0 +1,19 @@
+\frametitle{Пример: miniHaskell}
+\begin{verbatim}
+    f = \x ->
+      let g = \y -> \z -> ([x, y], z)
+    in
+      (g (), g True)
+  \end{verbatim}
+  \vspace{-25pt}
+  \begin{center}
+    \rule{0.9\paperwidth}{0.4pt}
+  \end{center}
+  \vspace{-5pt}
+  В выражении g True:
+  \begin{verbatim}
+    g  :: () -> b2 -> ([()],b2)
+    True :: ()
+    True :: Bool
+  \end{verbatim}
+  Унификация приводит к ошибке.

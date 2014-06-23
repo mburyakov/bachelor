@@ -1,0 +1,196 @@
+\documentclass[pdftex,usenames,svgnames,dvipsnames,ucs]{beamer}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{droid}
+\usepackage{hyperref}
+\usepackage{textgreek}
+%\usepackage{listing}
+
+\title[Модульная система проверки типов]{Разработка и реализация модульной системы проверки и вычисления типов}
+\author{М.~А.~Буряков}
+\institute[каф. РВКС]{СПбГПУ, каф. РВКС\\
+\vspace{0.7cm}
+Научный руководитель:\\ст.~преп.~Д.~А.~Тимофеев\\
+\vspace{0.7cm}
+}
+\date{СПб, 2014}
+
+%\usecolortheme{rose}
+%\useinnertheme[shadow]{rounded}
+%\usecolortheme{dolphin}
+%\useoutertheme{infolines}
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+%\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{headline}{}
+
+
+\setbeamercovered{transparent}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}{Порядок обработки программного кода}
+  \includegraphics[scale=0.48]{../figures/diagrams/lexerparser.pdf}
+\end{frame}
+
+\begin{frame}{Система типов}
+\textbf{Система типов}:
+  \begin{itemize}
+    \item проставляет типы выражениям
+\vspace{1em}
+
+    \begin{tabular}{|l|l|l|}
+\hline
+\texttt{2   + 3  } & \texttt{int}&\\
+\texttt{2.0 + 3.0} & \texttt{double}& типы выражений Java\\
+\texttt{2.0 + 3  } & \texttt{double}&\\
+\hline
+    \end{tabular}
+\vspace{1em}
+    \item проверяет корректность типов
+\vspace{1em}
+
+    \begin{tabular}{|l|l|}
+\hline&\\
+\texttt{int  i = 1000}&корректные выражение Java\\
+\texttt{byte b = 2*64 - 1}&\\&\\
+\hline&\\
+\texttt{int  i = 1.0}&некорректные выражение Java\\
+\texttt{byte b = 200}&\\&\\
+\hline
+    \end{tabular}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[c]{Системы типов}
+  На бумаге:
+  \begin{itemize}
+    \item Разрабатываются создателями языка
+    \item Описываются словами в документации
+    \item Используют придуманную специально для них терминологию
+  \end{itemize}
+\vspace{1em}
+  На практике:
+  \begin{itemize}
+    \item Входят в состав компиляторов и среды разработки (IDE)
+    \item Реализуются независимо для каждого языка
+    \item Реализуются в виде алгоритма на языке общего назначения
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Платформы метапрограммирования}
+  \begin{itemize}
+    \item Предначначены для разработки предметно-ориентированных языков (DSL)
+    \item Содержат средства для описания языков
+    \item Генерируют IDE для разработанных языков
+  \end{itemize}
+
+\vspace{0.2em}
+      \includegraphics[scale=0.5]{../figures/diagrams/spoofax.png}
+\vspace{0.2em}
+
+  Популярные платформы метапрограммирования:
+  \begin{itemize}
+    \item XText
+    \item MPS
+    \item Spoofax
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Системы типов в платформах метапрограммирования}
+  \begin{block}{}
+    Необходим единый интерфейс взаимодействия IDE c системой типов
+  \end{block}
+  \begin{block}{}
+    Система типов описывается вместе с создаваемым языком
+  \end{block}
+  \begin{block}{}
+    Система типов описывается на специальном предметно-ориентированном языке
+  \end{block}
+  \pause
+  Известные среды метапрограммирования включают в себя поддержку систем типов:
+  \begin{itemize}
+    \item XTypes
+    \item XText Typesystem Framework
+    \item MPS typesystem aspect
+    \item Spoofax typesystem integration
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Недостатки поддержки систем типов в среде MPS}
+  Язык описания систем типов отталкивается от конкретной модели вычисления типов
+  \begin{alertblock}{}
+    Языки с другой моделью вычисления типов описываются крайне трудно
+  \end{alertblock}
+  \pause
+    Выбранная модель вычисления выбрана в качестве компромиссной модели и не соответствует ни одному существующему языку
+  \begin{alertblock}{}
+    Поддержка систем типов в MPS предназначалась для языка Java, однако вычислительная модель ближе к системе типов Хиндли-Милнера
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Модель вычисления системы типов MPS}  
+\end{frame}
+
+\begin{frame}[t]{Постановка задачи}
+\onslide<1,5>{
+  \begin{block}{}
+    Разработать интерфейс взаимодействия IDE и системы типов
+  \end{block}
+}
+\onslide<2,5>{
+  \begin{block}{}
+    Разработать язык описания систем типов
+      \only<2>{\begin{itemize}
+      \item Модель вычисления этого языка должна быть в достаточной степени универсальна, чтобы выразить системы типов разных языков
+    \end{itemize}}
+  \end{block}
+}
+\onslide<3,5>{
+  \begin{block}{}
+    На разработанном языке описать основу системы типов языка Haskell.
+    \only<3>{\begin{itemize}
+      \item Система типов должна описываться модульно в виде набора правил, объявленных для конструкций языка
+    \end{itemize}}
+  \end{block}
+}
+\onslide<4,5>{
+  \begin{block}{}
+    На разработанном языке описать элементы системы типов Java (отношения над типами и операция присваивания).
+    \only<4>{\begin{itemize}
+      \item Отношения над типами должны описываться расширяемо, чтобы при добавлении в язык новых типов отношения можно было расширить на них
+    \end{itemize}}
+  \end{block}
+}
+\end{frame}
+
+\begin{frame}{Репозиторий типов}
+\end{frame}
+
+\begin{frame}{Правила типизации}
+\end{frame}
+
+\begin{frame}{Операции над типами}
+\end{frame}
+
+\begin{frame}{Иерархический контекст}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \textbf{\LARGE{Спасибо за внимание!}}
+  \end{center}
+\end{frame}
+
+\end{document}
