@@ -91,7 +91,7 @@
 
 \begin{frame}[c]{Платформы метапрограммирования}
   \begin{itemize}
-    \item Предначначены для разработки предметно-ориентированных языков (DSL)
+    \item Предназначены для разработки предметно-ориентированных языков (DSL)
     \item Содержат средства для описания языков (метаязыки)
     \item Генерируют трансляторы и IDE для разработанных языков
   \end{itemize}
@@ -137,7 +137,7 @@
     Несовместимые алгоритмы описать сложно или невозможно
   \end{alertblock}
   \pause
-  Эта модель вычисления выбрана в качестве компромиссной модели и не соответствует ни одному существующему языку
+  Существующая на данный момент модель вычисления была выбрана как компромиссный вариант и не соответствует ни одному существующему языку
   \begin{alertblock}{}
     Поддержка систем типов в MPS предназначалась для языка Java, однако модель вычисления языка ближе к системе типов Хиндли-Милнера
   \end{alertblock}
@@ -331,18 +331,20 @@
 
 Операция присваивания
 
+\vspace{2em}
+
 \begin{ttfamily}
-typing rule for AssignmentExpression
-\ \ reeds: typeOf(this.leftHandSide), typeOf(this.rightHandSide)\\
-\ \ outputs: typeOf(this)\\
-\ \ type: \{
-\ \ \ \ typeVar leftType = typeOf(this.leftHandSide);
-\ \ \ \ typeVar rightType = typeOf(this.rightHandSide);
-\ \ \ \ case tryAssignmentConversion(rightType, leftType) of \{
-\ \ \ \ \ \ "allowed" -> return;
-\ \ \ \ \ \ "denied" -> showError("incompatible types");
-\ \ \ \ \ \ "constantOnly -> .......
-\ \ \ \ \}
+typing rule for AssignmentExpression\\
+\ \ reeds: typeOf(this.lhs), typeOf(this.rhs)\\
+\ \ outputs: checking only\\
+\ \ type: \{\\
+\ \ \ \ typeVar lType = typeOf(this.lhs);\\
+\ \ \ \ typeVar rType = typeOf(this.rhs);\\
+\ \ \ \ case tryAssignmentConversion(rType, lType) of \{\\
+\ \ \ \ \ \ "allowed"\ -> return;\\
+\ \ \ \ \ \ "denied"\ -> showError("incompatible types");\\
+\ \ \ \ \ \ "constantOnly"\ -> .......\\
+\ \ \ \ \}\\
 \ \ \}
 \end{ttfamily}
 
@@ -427,9 +429,12 @@ typing rule for AssignmentExpression
     %\vspace{3em}
     \textbf{\LARGE{Спасибо за внимание!}}\\
     \vspace{3em}
+\onslide<3>{
     \includegraphics[scale=0.1]{../figures/diagrams/fox.png}
+}\only<2,3>{
     \hspace{3em}
     \includegraphics[scale=0.5]{../figures/diagrams/hear.png}
+}
   \end{center}
 \end{frame}
 
