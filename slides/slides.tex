@@ -197,7 +197,7 @@
     Все типы хранятся в репозитории
   \end{block}
   \begin{block}{}
-    Типы привязываются к вершинам AST
+    Репозиторий типов хранит соответствие между вершинами AST и их типами
   \end{block}
   Операции с репозиторием:
   \begin{itemize}
@@ -216,7 +216,7 @@
 \begin{frame}{Правила типизации}
   Алгоритм вывода и проверки типов реализуется в виде правил
   \begin{block}{}
-    Правило --- фрагмент кода на языке, расширяющем Java
+    Правило --- фрагмент кода на предметно-ориентированном языке с возможностью вставок кода на Java
   \end{block}
   Правило может делать запросы на:
   \begin{itemize}
@@ -245,6 +245,8 @@
   Правило для объявления алгебраичекого типа обходит все конструкторы и присваивает им тип.
 
 \end{frame}
+
+
 
 \begin{frame}{Правила типизации}
   \begin{block}{}
@@ -287,7 +289,7 @@
   \alert{\largeПример:} операция box в Java
 
   \begin{block}{Объявление операции}
-    \texttt{java.box :: primitiveType -> referenceType}
+    \texttt{operation java.box :: primitiveType -> referenceType}
   \end{block}
 \pause
   \begin{block}{Объявление реализаций}
@@ -323,6 +325,27 @@
     \item assignment conversion
     \item unchecked conversion
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Пример использвания отношения}
+
+Операция присваивания
+
+\begin{ttfamily}
+typing rule for AssignmentExpression
+\ \ reeds: typeOf(this.leftHandSide), typeOf(this.rightHandSide)\\
+\ \ outputs: typeOf(this)\\
+\ \ type: \{
+\ \ \ \ typeVar leftType = typeOf(this.leftHandSide);
+\ \ \ \ typeVar rightType = typeOf(this.rightHandSide);
+\ \ \ \ case tryAssignmentConversion(rightType, leftType) of \{
+\ \ \ \ \ \ "allowed" -> return;
+\ \ \ \ \ \ "denied" -> showError("incompatible types");
+\ \ \ \ \ \ "constantOnly -> .......
+\ \ \ \ \}
+\ \ \}
+\end{ttfamily}
+
 \end{frame}
 
 \begin{frame}{Реализация унификации}
