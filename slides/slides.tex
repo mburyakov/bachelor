@@ -7,7 +7,7 @@
 \usepackage{droid}
 \usepackage{hyperref}
 \usepackage{textgreek}
-%\usepackage{listing}
+\usepackage{listings}
 
 \title[Модульная система проверки типов]{Разработка и реализация модульной системы проверки и вычисления типов}
 \author{М.~А.~Буряков}
@@ -30,7 +30,7 @@
 %\setbeamertemplate{headline}{}
 
 
-\setbeamercovered{transparent}
+%\setbeamercovered{transparent}
 
 \begin{document}
 
@@ -46,7 +46,7 @@
 \begin{frame}{Система типов}
 \textbf{Система типов}:
   \begin{itemize}
-    \item проставляет типы выражениям
+    \item приписывает типы выражениям
 \vspace{1em}
 
     \begin{tabular}{|l|l|l|}
@@ -62,10 +62,10 @@
 
     \begin{tabular}{|l|l|}
 \hline&\\
-\texttt{int  i = 1000}&корректные выражение Java\\
+\texttt{int  i = 1000}&корректные выражения Java\\
 \texttt{byte b = 2*64 - 1}&\\&\\
 \hline&\\
-\texttt{int  i = 1.0}&некорректные выражение Java\\
+\texttt{int  i = 1.0}&некорректные выражения Java\\
 \texttt{byte b = 200}&\\&\\
 \hline
     \end{tabular}
@@ -73,33 +73,36 @@
 \end{frame}
 
 
-\begin{frame}[c]{Системы типов}
-  На бумаге:
+\begin{frame}[c]{Система типов}
+  Спецификация:
   \begin{itemize}
-    \item Разрабатываются создателями языка
-    \item Описываются словами в документации
-    \item Используют придуманную специально для них терминологию
+    \item Разрабатывается создателем языка
+    \item Описывается словами в документации
+    \item Использует придуманную специально для неё терминологию
   \end{itemize}
 \vspace{1em}
-  На практике:
+  Реализация:
   \begin{itemize}
-    \item Входят в состав компиляторов и среды разработки (IDE)
-    \item Реализуются независимо для каждого языка
-    \item Реализуются в виде алгоритма на языке общего назначения
+    \item Входит в состав компилятора или среды разработки (IDE)
+    \item Реализуется независимо для каждого языка
+    \item Реализуется в виде алгоритма на языке общего назначения
   \end{itemize}
 \end{frame}
 
 \begin{frame}[c]{Платформы метапрограммирования}
   \begin{itemize}
     \item Предначначены для разработки предметно-ориентированных языков (DSL)
-    \item Содержат средства для описания языков
-    \item Генерируют IDE для разработанных языков
+    \item Содержат средства для описания языков (метаязыки)
+    \item Генерируют трансляторы и IDE для разработанных языков
   \end{itemize}
 
+\footnotesize
 \vspace{0.2em}
-      \includegraphics[scale=0.5]{../figures/diagrams/spoofax.png}
-\vspace{0.2em}
+      \includegraphics[scale=0.5]{../figures/diagrams/spoofax.png}\\
+      \hspace{2em}грамматика языка\hspace{8em}IDE для языка
 
+\normalsize
+\vspace{0.8em}
   Популярные платформы метапрограммирования:
   \begin{itemize}
     \item XText
@@ -129,27 +132,41 @@
 \end{frame}
 
 \begin{frame}{Недостатки поддержки систем типов в среде MPS}
-  Язык описания систем типов отталкивается от конкретной модели вычисления типов
+  Язык описания систем типов имеет модель вычисления, несовместимую с алгоритмами анализа типов многих языков программирования
   \begin{alertblock}{}
-    Языки с другой моделью вычисления типов описываются крайне трудно
+    Несовместимые алгоритмы описать сложно или невозможно
   \end{alertblock}
   \pause
-    Выбранная модель вычисления выбрана в качестве компромиссной модели и не соответствует ни одному существующему языку
+  Эта модель вычисления выбрана в качестве компромиссной модели и не соответствует ни одному существующему языку
   \begin{alertblock}{}
-    Поддержка систем типов в MPS предназначалась для языка Java, однако вычислительная модель ближе к системе типов Хиндли-Милнера
+    Поддержка систем типов в MPS предназначалась для языка Java, однако модель вычисления языка ближе к системе типов Хиндли-Милнера
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{Модель вычисления системы типов MPS}  
+\begin{frame}{Модель вычисления системы типов MPS}
+  \begin{block}{}
+    При обходе дерева создаются уравнения, неравенства и другие ограничения на типы вершин
+  \end{block}
+  \begin{tabular}{ll}
+    \includegraphics[scale=0.5]{../figures/pdf/mpsequation.pdf} & уравнение \\
+    \includegraphics[scale=0.5]{../figures/pdf/mpsinequation.pdf} & неравенство \\
+    \includegraphics[scale=0.5]{../figures/pdf/mpscomparison.pdf} & сравнимость \\
+  \end{tabular}
+  \begin{block}{}
+    Специальный решатель пытается найти решение, удовлетворяющее всем ограничениям
+  \end{block}
+  \begin{alertblock}{}
+    Если решений несколько, выбирается одно из них
+  \end{alertblock}
 \end{frame}
 
 \begin{frame}[t]{Постановка задачи}
-\onslide<1,5>{
+\onslide<1->{
   \begin{block}{}
     Разработать интерфейс взаимодействия IDE и системы типов
   \end{block}
 }
-\onslide<2,5>{
+\onslide<2->{
   \begin{block}{}
     Разработать язык описания систем типов
       \only<2>{\begin{itemize}
@@ -157,15 +174,15 @@
     \end{itemize}}
   \end{block}
 }
-\onslide<3,5>{
+\onslide<3->{
   \begin{block}{}
-    На разработанном языке описать основу системы типов языка Haskell.
+    На разработанном языке описать основную часть системы типов языка Haskell.
     \only<3>{\begin{itemize}
       \item Система типов должна описываться модульно в виде набора правил, объявленных для конструкций языка
     \end{itemize}}
   \end{block}
 }
-\onslide<4,5>{
+\onslide<4->{
   \begin{block}{}
     На разработанном языке описать элементы системы типов Java (отношения над типами и операция присваивания).
     \only<4>{\begin{itemize}
@@ -176,20 +193,220 @@
 \end{frame}
 
 \begin{frame}{Репозиторий типов}
+  \begin{block}{}
+    Все типы хранятся в репозитории
+  \end{block}
+  \begin{block}{}
+    Типы привязываются к вершинам AST
+  \end{block}
+  Операции с репозиторием:
+  \begin{itemize}
+    \item прочитать тип вершины
+    \item записать тип вершины
+  \end{itemize}
+  \begin{block}{Множественные репозитории}
+    Могут существовать несколько независимых репозиториев
+    \begin{itemize}
+      \item Если работают одновременно несколько разных систем типов, они будут использовать разные репозитории
+    \end{itemize}   
+  \end{block}
+
 \end{frame}
 
 \begin{frame}{Правила типизации}
+  Алгоритм вывода и проверки типов реализуется в виде правил
+  \begin{block}{}
+    Правило --- фрагмент кода на языке, расширяющем Java
+  \end{block}
+  Правило может делать запросы на:
+  \begin{itemize}
+    \item чтение небольшого фрагмента AST
+    \item чтения из репозитория типов
+    \item запись в репозиторий типов
+  \end{itemize}
+  \begin{block}{}
+    Правило пишется для определённой конструкции языка
+    \begin{itemize}
+      \item Каждый раз, когда эта конструкция используется в программе, создаётся экземпляр правила
+    \end{itemize}   
+  \end{block}
+\end{frame}
+
+\begin{frame}{Пример: конструкторы в языке Haskell}
+
+  Конструкторы возникают в объявлении алгебраического типа:
+
+\vspace{0.8em}
+  \includegraphics[scale=0.75]{../figures/pdf/maybetype.pdf}
+\vspace{0.8em}
+  \includegraphics[scale=0.75]{../figures/pdf/booltype.pdf}
+\vspace{0.8em}
+
+  Правило для объявления алгебраичекого типа обходит все конструкторы и присваивает им тип.
+
+\end{frame}
+
+\begin{frame}{Правила типизации}
+  \begin{block}{}
+    Тип, вычисленный одним экземпляром, может использоваться другим экземпляром
+    \begin{itemize}
+      \item важен порядок применения экземпляров правил
+    \end{itemize}
+  \end{block}
+\pause
+  \begin{block}{}
+    Правила снабжаются аннотациями
+    \begin{itemize}
+      \item вершины AST, читаемые экземпляром этого правила
+      \item типы, читаемые экземпляром этого правила
+      \item типы, записываемые экземпляром этого правила
+    \end{itemize}
+  \end{block}
+\pause
+  \begin{block}{}
+    Если нужно вычилить тип вершины:
+    \begin{itemize}
+      \item создаются экземпляры правил, которые могут повлиять на тип этой вершины
+      \item производится топологическая сортировка по зависимостям
+      \item экземпляры правил запускаются в правильном порядке
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}{Операции над типами}
+\vspace{-0.4em}
+  \begin{block}{}
+    \begin{itemize}
+      \item Операция объявляется отделено от реализации
+      \item Реализации могут добавляться в существующую операцию
+    \end{itemize}
+  \end{block}
+
+\pause
+
+  \alert{\largeПример:} операция box в Java
+
+  \begin{block}{Объявление операции}
+    \texttt{java.box :: primitiveType -> referenceType}
+  \end{block}
+\pause
+  \begin{block}{Объявление реализаций}
+    \texttt{java.box(int)\ \ = Integer}\\
+    \texttt{java.box(byte) = Byte}\\
+    \texttt{.....................}\\
+    \texttt{java.box(char) = Character}
+  \end{block}
+\pause
+  \begin{block}{Расширяющая реализация}
+    \texttt{java.box(dict) = Map<String, Object>}
+  \end{block}
 \end{frame}
 
-\begin{frame}{Иерархический контекст}
+\begin{frame}{Операции над типами}
+  \begin{block}{}
+    С помощью операций над типами можно определить отношения:\\
+    \texttt{java.isSubtype :: type -> type -> boolean}
+  \end{block}
+  В работе реализованы операции:
+  \begin{itemize}
+    \item box
+    \item unbox
+  \end{itemize}
+  Реализованы отношения:
+  \begin{itemize}
+    \item identity conversion
+    \item widening primitive conversion
+    \item widening reference conversion
+    \item narrowing primitive conversion
+    \item narrowing reference conversion
+    \item capture conversion
+    \item assignment conversion
+    \item unchecked conversion
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Реализация унификации}
+%\texttt{data Bool = True | False}\\
+%\vspace{0.5em}
+%\texttt{listPair :: $\forall$ a => a -> a -> [a]}\\
+%\texttt{listPair x y = [x, y]}\\
+%\vspace{0.5em}
+%\texttt{undefined :: a}\\
+%\texttt{undefined = undefined}\\
+%\vspace{0.5em}
+%\texttt{main = listPair True undefined}
+
+
+  \begin{block}{}
+    \begin{itemize}
+      \item Унификация объявляется как бинарная операция над типами
+      \item Унификация запускается при повторной записи типа для одной и той же вершины
+    \end{itemize}
+  \end{block}
+
+\includegraphics[scale=0.7]{../figures/diagrams/unification.pdf}
+
+
+\end{frame}
+
+\begin{frame}{Заключение}
+  \begin{block}{}
+    Разработан интерфейс взамодействия IDE и системы типов, основанный на репозитории типов
+  \end{block}
+  \begin{block}{}
+    Разработан предметно-ориентированный язык описания правил типизации
+    \begin{itemize}
+      \item Написана виртуальная машина, запускающая правила в нужном порядке
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    На этом языке написана система типов языка Haskell
+  \end{block}
+  \begin{block}{}
+    На этом языке описаны элементы системы типов Java
+  \end{block}
+\end{frame}
+
+\begin{frame}{Заключение}  
+  \begin{block}{}
+    В описании системы типов Haskell правила отражают уравнения, описанные в спецификации системы типов
+  \end{block}
+  \begin{block}{}
+    В описании системы типов Java отношения и операции над типами записываются подобно их описанию в спецификации языка
+  \end{block}
+\end{frame}
+
+\begin{frame}{Возможности для дальнейшего развития}
+  \begin{block}{}
+    Усилить интеграцию с MPS
+    \begin{itemize}
+      \item использовать разработанную систему для подсказок IDE
+      \item использовать её при генерации кода в MPS
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    Улучшить синтаксис языка описания систем типов
+    \begin{itemize}
+      \item синтаксис языка в MPS описывается независимо от семантики, и может дорабатываться отдельно
+    \end{itemize}
+  \end{block}
+  \begin{block}{}
+    Добавить поддержку других платформ метапрограммирования
+  \end{block}
+  \begin{block}{}
+    Использовать разработанную систему при создании новых языков
+  \end{block}
 \end{frame}
 
 \begin{frame}
   \begin{center}
-    \textbf{\LARGE{Спасибо за внимание!}}
+    
+    %\vspace{3em}
+    \textbf{\LARGE{Спасибо за внимание!}}\\
+    \vspace{3em}
+    \includegraphics[scale=0.1]{../figures/diagrams/fox.png}
+    \hspace{3em}
+    \includegraphics[scale=0.5]{../figures/diagrams/hear.png}
   \end{center}
 \end{frame}
 
